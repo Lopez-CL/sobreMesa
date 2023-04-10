@@ -17,7 +17,7 @@ const RecipeSchema = new mongoose.Schema ({
         contentType: {
             type: String,
             required: [true, '*Please submit an accepted file type*'],
-            enum: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif']
+            enum: { value: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'],message: "*Please submit an accepted file type *"}
         },
         required: [function (){
             return !(this.imageOfDish && this.imageOfDish.data && this.imageOfDish.contentType);
