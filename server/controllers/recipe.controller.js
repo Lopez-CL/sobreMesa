@@ -49,3 +49,11 @@ const deleteRecipe = (req, res) => {
             res.status(400).json(err)
         })
 }
+
+module.exports = {
+    createRecipe,
+    getAllRecipes,
+    getRecipeById,
+    updateRecipe,
+    deleteRecipe,
+}
