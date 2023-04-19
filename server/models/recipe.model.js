@@ -9,7 +9,6 @@ const RecipeSchema = new mongoose.Schema ({
     instructions:{
         type: [String],
         required: [true, '*Instructions required!*'],
-        uniqueItems: true,
         minItems: {value: 3, message: '*Give us more than three steps!*'},
     },
     imageOfDish:{
