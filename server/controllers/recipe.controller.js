@@ -34,7 +34,7 @@ const updateRecipe = (req, res) => {
         new: true,
     })
         .then(updatedRecipe =>{
-            res.json(updateRecipe)
+            res.json(updatedRecipe)
         })
         .catch(err =>{
             console.log(err)

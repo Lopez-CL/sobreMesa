@@ -12,15 +12,17 @@ const RecipeSchema = new mongoose.Schema ({
         minItems: {value: 3, message: '*Give us more than three steps!*'},
     },
     imageOfDish:{
-        data: Buffer,
+        data: {
+            type: Buffer,
+            required: [function (){
+                return !(this.imageOfDish && this.imageOfDish.data && this.imageOfDish.contentType);
+            }, '*Image required. Help us visualize that end goal*'],
+        },
         contentType: {
             type: String,
             required: [true, '*Please submit an accepted file type*'],
-            enum: { value: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'],message: "*Please submit an accepted file type *"}
+            enum: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif']
         },
-        required: [function (){
-            return !(this.imageOfDish && this.imageOfDish.data && this.imageOfDish.contentType);
-        }, '*Image required. Help us visualize that end goal*']
     },
     createdAt: Date,
     updatedAt: Date,
