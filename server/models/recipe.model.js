@@ -6,6 +6,28 @@ const RecipeSchema = new mongoose.Schema ({
         required: [true, '*Give your recipe a name!*'],
         minlength: [2,'*The name must be two characters or longer*']
     },
+    cusineType:{
+        type: [String],
+        required: [true, '*Instructions required!*'],
+        enum: ['']
+    },
+    foodOccasion:{
+        type: [String],
+        required: [true, '*Indicate the best occassions for this dish!*'],
+    },
+    cookTime:{
+        hours:{
+            type: Number,
+        },
+        minutes:{
+            type: Number,
+            required: [true,"*Must indicate minutes*"]
+        },
+    },
+    ingredients:{
+        type: [String],
+        required: [true, '*Cusine type entry is required!*'],
+    },
     instructions:{
         type: [String],
         required: [true, '*Instructions required!*'],
@@ -14,9 +36,7 @@ const RecipeSchema = new mongoose.Schema ({
     imageOfDish:{
         data: {
             type: Buffer,
-            required: [function (){
-                return !(this.imageOfDish && this.imageOfDish.data && this.imageOfDish.contentType);
-            }, '*Image required. Help us visualize that end goal*'],
+            required: [true, '*Image required. Help us visualize that end goal*'],
         },
         contentType: {
             type: String,
