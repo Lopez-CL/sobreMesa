@@ -6,14 +6,15 @@ const RecipeSchema = new mongoose.Schema ({
         required: [true, '*Give your recipe a name!*'],
         minlength: [2,'*The name must be two characters or longer*']
     },
-    cusineType:{
+    cuisineType:{
         type: [String],
         required: [true, '*Instructions required!*'],
         enum: ['']
     },
     foodOccasion:{
         type: [String],
-        required: [true, '*Indicate the best occassions for this dish!*'],
+        required: [true, '*Indicate the best occasion for this dish!*'],
+        // Remember to add this advice on the front end: Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.
     },
     cookTime:{
         hours:{
@@ -26,7 +27,7 @@ const RecipeSchema = new mongoose.Schema ({
     },
     ingredients:{
         type: [String],
-        required: [true, '*Cusine type entry is required!*'],
+        required: [true, '*Cuisine type entry is required!*'],
     },
     instructions:{
         type: [String],
