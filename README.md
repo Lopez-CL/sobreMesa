@@ -19,5 +19,5 @@
 ## Database Schema
 
   ### Recipes
-   | Type | Name
+  | Type | Name
 | ------- | ------- |
