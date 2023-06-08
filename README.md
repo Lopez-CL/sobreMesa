@@ -4,17 +4,17 @@
 
 ##Features
   ### Must Haves
-    * CRUD Functionality for recipes, users, and cookbooks
-    * Authenticated login & protected routes
-    * Slick, modern responsive UI using React library, Material-UI
-    * In-depth filtering tool to search through created recipes
-    * File uploads for recipe images and user profile
-    * Random recipe generator for when user doesn't know when to cook
+  * CRUD Functionality for recipes, users, and cookbooks
+  * Authenticated login & protected routes
+  * Slick, modern responsive UI using React library, Material-UI
+  * In-depth filtering tool to search through created recipes
+  * File uploads for recipe images and user profile
+  * Random recipe generator for when user doesn't know when to cook
   ### Non-Essential Features I hope to have
-    * When looking at displayed cook books, images of recipes that belong to it will display via a carousel feature
-    * Utilize the Web Socket.io to effect event-driven responses & messages to server without user needing to poll/request to receive updated data.
+  * When looking at displayed cook books, images of recipes that belong to it will display via a carousel feature
+  * Utilize the Web Socket.io to effect event-driven responses & messages to server without user needing to poll/request to receive updated data.
   ### Features for when I'm mad advanced
-    * Using a LLM (whether one I build or via API of someone else's) power a chatbot to give user suggestions and tips on how to cook or how to put a spin on the recipe (or maybe determine what goes well with what!).
+  * Using a LLM (whether one I build or via API of someone else's) power a chatbot to give user suggestions and tips on how to cook or how to put a spin on the recipe (or maybe determine what goes well with what!).
 
 ## Database Schema
 
