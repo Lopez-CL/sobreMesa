@@ -15,5 +15,16 @@
 
 /* 3. Components */
 
+    /* NavBar */
+    #menu{
+        height: 150px;
+        display: flex;
+        justify-content: end;
+    }
+    #menu-button{
+        height: fit-content;
+    }
+
+
 
 /* 4. Media Queries */

@@ -1,6 +1,7 @@
 import './App.css';
 import {createTheme, ThemeProvider} from '@mui/material/styles'
 import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
+import NavBar from './components/NavBar';
 import Dashboard from './components/Dashboard';
 const theme = createTheme({
   palette:{
@@ -23,6 +24,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+      <NavBar></NavBar>
         <Routes>
           <Route exact path='/' element={<Dashboard/>}/>
         </Routes>
