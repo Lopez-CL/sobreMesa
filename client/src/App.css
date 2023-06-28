@@ -17,14 +17,25 @@
 
     /* NavBar */
     #menu{
-        height: 150px;
+        height: fit-content;
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
     }
     #menu-button{
         height: fit-content;
+        width: 5rem;
     }
-
+    #logo{
+        display: grid;
+        grid-template-rows: auto;
+        justify-content: center;
+        margin-bottom: 3rem;
+    }
+    #logo > img{
+        margin: auto 0;
+        width: 300px;
+        height: 300px;
+    }
 
 
 /* 4. Media Queries */
