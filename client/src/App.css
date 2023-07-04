@@ -29,12 +29,21 @@
         display: grid;
         grid-template-rows: auto;
         justify-content: center;
-        margin-bottom: 3rem;
+        margin-bottom: 1rem;
     }
     #logo > img{
         margin: auto 0;
-        width: 300px;
-        height: 300px;
+        width: 275px;
+        height: 275px;
+    }
+
+    /* .MuiTab-root{
+        cursor: pointer;
+    } */
+
+    .MuiTabs-flexContainer{
+        display: flex;
+        justify-content: space-around;
     }
 
 
