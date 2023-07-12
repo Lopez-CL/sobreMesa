@@ -17,8 +17,8 @@ const MenuButton = () => {
             <div id="menu">
                 <Button
                     sx={[
-                        {mt:3, mr:3, backgroundColor: theme.palette.secondary.dark, color:"white", ':hover':{backgroundColor: theme.palette.primary.main, color:"black"}},
-                        open && {backgroundColor: theme.palette.primary.main, color:"black"}
+                        {mt:3, mr:3, backgroundColor: theme.palette.secondary.dark, color:"white", ':hover':{backgroundColor: theme.palette.primary.dark, color:"white"}},
+                        open && {backgroundColor: theme.palette.primary.dark, color:"white"}
                     ]}
                     id="menu-button"
                     aria-controls={open ? "menu-button" : undefined}
