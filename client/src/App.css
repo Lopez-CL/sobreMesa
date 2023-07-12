@@ -45,6 +45,8 @@
         display: flex;
         justify-content: space-around;
     }
-
+    .MuiTab-root{
+        color: #995112 !important;
+    }
 
 /* 4. Media Queries */

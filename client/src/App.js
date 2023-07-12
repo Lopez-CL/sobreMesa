@@ -3,6 +3,7 @@ import {createTheme, ThemeProvider} from '@mui/material/styles'
 import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
 import NavBar from './components/NavBar';
 import Dashboard from './components/Dashboard';
+import RecipeForm from './components/RecipeForm';
 const theme = createTheme({
   palette:{
     primary: {
@@ -27,6 +28,7 @@ function App() {
       <NavBar></NavBar>
         <Routes>
           <Route exact path='/' element={<Dashboard/>}/>
+          <Route exact path='/addrecipe' element={<RecipeForm/>}/>
         </Routes>
         </BrowserRouter>
     </ThemeProvider>
