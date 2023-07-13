@@ -5,6 +5,7 @@ const Dashboard = () =>{
     // const theme = useTheme();
     return(
         <>
+        <p>Dashboard</p>
         </>
     )
 }
