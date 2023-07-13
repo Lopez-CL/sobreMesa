@@ -7,9 +7,9 @@ const RecipeSchema = new mongoose.Schema ({
         minlength: [2,'*The name must be two characters or longer*']
     },
     cuisineType:{
-        type: [String],
+        type: String,
         required: [true, '*Instructions required!*'],
-        enum: ['']
+        enum: ['Caribbean', 'Italian']
     },
     foodOccasion:{
         type: [String],

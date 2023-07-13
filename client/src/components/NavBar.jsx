@@ -28,9 +28,9 @@ const NavBar = () => {
                     indicatorColor="primary"
                     aria-label="nav-tabs">
                 <Tab className="tab" sx={{color: theme.palette.primary.dark}} value="recipeAndBooks" label="Recipe & Books"/>
-                <Tab className="tab" sx={{color: theme.palette.primary.dark}} value="addRecipe" label="Add Recipe"/>
-                <Tab className="tab" sx={{color: theme.palette.primary.dark}} value="familyCookBooks" label="Family Cookbooks"/>
-                <Tab className="tab" sx={{color: theme.palette.primary.dark}} value="randomRecipe" label="Random Recipes"/>
+                <Tab className="tab" sx={{color: theme.palette.primary.dark}} value="addrecipe" label="Add Recipe"/>
+                <Tab className="tab" sx={{color: theme.palette.primary.dark}} value="familycookbooks" label="Family Cookbooks"/>
+                <Tab className="tab" sx={{color: theme.palette.primary.dark}} value="randomrecipe" label="Random Recipes"/>
                 </Tabs>
             </nav>
         </header>
