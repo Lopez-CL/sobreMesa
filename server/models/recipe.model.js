@@ -14,7 +14,8 @@ const RecipeSchema = new mongoose.Schema ({
     foodOccasion:{
         type: [String],
         required: [true, '*Indicate the best occasion(s) for this dish!*'],
-        maxItems: {value:4, message:"*Let's keep it under 4!*"}
+        maxItems: {value:4, message:"*Let's keep it under 4!*"},
+        minItems: {value:1, message:"*You need at least 1 occasion!*"}
         // Remember to add this advice on the front end: Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.
     },
     cookTime:{
