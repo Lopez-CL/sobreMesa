@@ -1,11 +1,9 @@
 import { React, useState } from "react";
 import Box  from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
 import { Typography } from "@mui/material";
-// import { FormControl } from "@mui/material";
-// import Input from "@mui/material";
-// import InputLabel from "@mui/material";
-
+const occasions = ['Breakfast', 'Lunch', "Brunch", "Afternoon Snack", "Appetizer", "Dinner", "Dessert", "Bedtime Snack"]
 const RecipeForm = () => {
     const [name, setName] = useState('')
     const [cuisineType, setCuisineType] = useState('')
@@ -22,8 +20,9 @@ const RecipeForm = () => {
         e.preventDefault();
         console.log('form data submitted')
     }
-    const HandleNameChange = e =>{
-        console.log(name)
+    const HandleTest = str =>{
+        setFoodOccasion(str)
+        console.log(str)
     }
     return (
         <>
@@ -36,10 +35,26 @@ const RecipeForm = () => {
                 id="outline-required"
                 label="Name your Dish"
                 defaultValue= "What's the dish called?"
-                onChange={e=> setName(e.target.value) }
+                // onChange={e=> HandleTest(e.target.value) }
                 >
                 </TextField>
             </div>
+            <div className="form-field">
+                    <TextField
+                    sx={{width: '50%'}}
+                    required
+                    select
+                    label="What's the food occasion?"
+                    defaultValue=""
+                    onChange={e=> HandleTest(e.target.value) }
+                    >
+                        {occasions.map((occasion,idx)=> (
+                            <MenuItem key={idx} value={occasion}>
+                                {occasion}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </div>
         </form>
         </>
     )
