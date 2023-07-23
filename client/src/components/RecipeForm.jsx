@@ -9,6 +9,7 @@ import { Typography } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
+import Button from "@mui/material/Button";
 const occasions = ['Breakfast', 'Lunch', "Brunch", "Afternoon Snack", "Appetizer", "Dinner", "Dessert", "Bedtime Snack"]
 const cuisines = ['Latin', 'Indian', "American Gastro Pub", "Italian", "Hawaiian", "French", "Nigerian", "General Dessert, Georgian, Southern Comfort Food "]
 const ITEM_HEIGHT = 48;
@@ -78,8 +79,7 @@ const RecipeForm = () => {
                         label="Name your Dish"
                         defaultValue="What's the dish called?"
                     // onChange={e=> HandleTest(e.target.value) }
-                    >
-                    </TextField>
+                    />
                 </div>
                 <div className="form-field">
                     <TextField
@@ -88,7 +88,7 @@ const RecipeForm = () => {
                         select
                         label="When's the best occasion to have this meal?"
                         defaultValue=""
-                        // onChange={e => HandleTest(e.target.value)}
+                    // onChange={e => HandleTest(e.target.value)}
                     >
                         {occasions.map((occasion, idx) => (
                             <MenuItem key={idx} value={occasion}>
@@ -98,35 +98,82 @@ const RecipeForm = () => {
                     </TextField>
                 </div>
                 <div className="form-field">
-                    <FormControl sx={{width: '50%'}}>
-                    <InputLabel id="demo-multiple-chip-label">What Type of Cuisine</InputLabel>
-                    <Select
-                        labelId="demo-multiple-chip-label"
-                        id="demo-multiple-chip"
-                        multiple
-                        value={cuisineType}
-                        input={<OutlinedInput id="select-multiple-chip" label="What Type of Cuisine" />}
-                        onChange={handleCuisineChange}
-                        renderValue={(selected) => (
-                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                {selected.map((value) => (
-                                    <Chip key={value} label={value} />
-                                ))}
-                            </Box>
-                        )}
-                        MenuProps={MenuProps}
-                    >
-                        {cuisines.map((cuisine)=>(
-                            <MenuItem
-                                key={cuisine}
-                                value={cuisine}
-                                style={getStyles(cuisine,cuisineType, theme)}
-                            >
-                                {cuisine}
-                            </MenuItem>
-                        ))}
-                    </Select>
+                    <FormControl sx={{ width: '50%' }}>
+                        <InputLabel id="demo-multiple-chip-label">What Type of Cuisine</InputLabel>
+                        <Select
+                            required
+                            labelId="demo-multiple-chip-label"
+                            id="demo-multiple-chip"
+                            multiple
+                            value={cuisineType}
+                            input={<OutlinedInput id="select-multiple-chip" label="What Type of Cuisine" />}
+                            onChange={handleCuisineChange}
+                            renderValue={(selected) => (
+                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                    {selected.map((value) => (
+                                        <Chip key={value} label={value} />
+                                    ))}
+                                </Box>
+                            )}
+                            MenuProps={MenuProps}
+                        >
+                            {cuisines.map((cuisine) => (
+                                <MenuItem
+                                    key={cuisine}
+                                    value={cuisine}
+                                    style={getStyles(cuisine, cuisineType, theme)}
+                                >
+                                    {cuisine}
+                                </MenuItem>
+                            ))}
+                        </Select>
                     </FormControl>
+                </div>
+                <div className="form-field">
+                        <TextField
+                            required
+                            helperText='Input hours'
+                            id='outlined-number'
+                            label='Hours'
+                            type="number"
+                        />
+                        <Typography variant="h3" sx={{fontWeight: 'bold', mx:1}}> : </Typography>
+                        <TextField
+                            required
+                            id='outlined-number'
+                            label='Minutes'
+                            type="number"
+                            helperText='Input minutes'
+                        />
+                </div>
+                <div className="form-field">
+                    <TextField
+                        sx={{width: '50%'}}
+                    multiline
+                    required
+                    id="outlined-multiline-flexible"
+                    label='Ingredients'
+                    placeholder="What goes into it? Separate instructions by commas"
+                    helperText='Separate ingredients by commas'
+                    rows={4}
+                    maxRows={6}
+                    />
+                </div>
+                <div className="form-field">
+                <TextField
+                    sx={{width: '50%'}}
+                    multiline
+                    required
+                    id="outlined-multiline-flexible"
+                    label='Instructions'
+                    placeholder="How do you make it? Separate instructions by commas"
+                    helperText='Separate instructions by commas'
+                    rows={4}
+                    maxRows={6}
+                />
+                </div>
+                <div className="form-field">
+
                 </div>
             </form>
         </>
