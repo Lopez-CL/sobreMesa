@@ -34,9 +34,10 @@ const RecipeForm = () => {
     const [name, setName] = useState('')
     const [cuisineType, setCuisineType] = useState([])
     const [foodOccasion, setFoodOccasion] = useState('')
-    const [hours, setHours] = useState()
-    const [minutes, setMinutes] = useState()
+    const [hours, setHours] = useState(0)
+    const [minutes, setMinutes] = useState(0)
     const [instructions, setInstructions] = useState([])
+    const [ingredients, setIngredients] = useState([])
     const [imageFile, setImageFile] = useState(null)
     const theme = useTheme();
     // const handleImageChange = (event) => {
@@ -63,10 +64,20 @@ const RecipeForm = () => {
         e.preventDefault();
         console.log('form data submitted')
     }
-    // const HandleTest = str => {
-    //     setFoodOccasion(str)
-    //     console.log(str)
-    // }
+    const HandleIngrd = str => {
+        let makeArray = str.split(',')
+        console.log(makeArray)
+        setFoodOccasion(makeArray)
+    }
+    const HandleInstr = str => {
+        let makeArray = str.split(',')
+        console.log(makeArray)
+        setFoodOccasion(makeArray)
+    }
+    const handleImageChange = event =>{
+        const file = event.target.files[0]
+        setImageFile(file)
+    }
     return (
         <>
             <form id="form-box">
@@ -82,26 +93,36 @@ const RecipeForm = () => {
                     />
                 </div>
                 <div className="form-field">
-                    <TextField
-                        sx={{ width: '50%' }}
-                        required
-                        select
-                        label="When's the best occasion to have this meal?"
-                        defaultValue=""
-                    // onChange={e => HandleTest(e.target.value)}
-                    >
-                        {occasions.map((occasion, idx) => (
+                    <FormControl required sx={{ width: '50%' }}>
+                        <InputLabel id="occasion-select-level">When's the best time to have this meal?</InputLabel>
+                        <Select
+                            labelId="occasion-select-level"
+                            id="occasion-select-level"
+                            label="When's the best time to have this meal?"
+                            defaultValue=''
+                            MenuProps={{
+                                anchorOrigin: {
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                },
+                                transformOrigin: {
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                },
+                            }}
+                        >
+                            {occasions.map((occasion, idx) => (
                             <MenuItem key={idx} value={occasion}>
                                 {occasion}
                             </MenuItem>
                         ))}
-                    </TextField>
+                        </Select>
+                    </FormControl>
                 </div>
                 <div className="form-field">
-                    <FormControl sx={{ width: '50%' }}>
+                    <FormControl required sx={{ width: '50%' }}>
                         <InputLabel id="demo-multiple-chip-label">What Type of Cuisine</InputLabel>
                         <Select
-                            required
                             labelId="demo-multiple-chip-label"
                             id="demo-multiple-chip"
                             multiple
@@ -130,50 +151,60 @@ const RecipeForm = () => {
                     </FormControl>
                 </div>
                 <div className="form-field">
-                        <TextField
-                            required
-                            helperText='Input hours'
-                            id='outlined-number'
-                            label='Hours'
-                            type="number"
-                        />
-                        <Typography variant="h3" sx={{fontWeight: 'bold', mx:1}}> : </Typography>
-                        <TextField
-                            required
-                            id='outlined-number'
-                            label='Minutes'
-                            type="number"
-                            helperText='Input minutes'
-                        />
-                </div>
-                <div className="form-field">
                     <TextField
-                        sx={{width: '50%'}}
-                    multiline
-                    required
-                    id="outlined-multiline-flexible"
-                    label='Ingredients'
-                    placeholder="What goes into it? Separate instructions by commas"
-                    helperText='Separate ingredients by commas'
-                    rows={4}
-                    maxRows={6}
+                        required
+                        helperText='Input hours'
+                        id='outlined-number'
+                        label='Hours'
+                        type="number"
+                    />
+                    <Typography variant="h3" sx={{ fontWeight: 'bold', mx: 1 }}> : </Typography>
+                    <TextField
+                        required
+                        id='outlined-number'
+                        label='Minutes'
+                        type="number"
+                        helperText='Input minutes'
                     />
                 </div>
                 <div className="form-field">
-                <TextField
-                    sx={{width: '50%'}}
-                    multiline
-                    required
-                    id="outlined-multiline-flexible"
-                    label='Instructions'
-                    placeholder="How do you make it? Separate instructions by commas"
-                    helperText='Separate instructions by commas'
-                    rows={4}
-                    maxRows={6}
-                />
+                    <TextField
+                        sx={{ width: '50%' }}
+                        multiline
+                        required
+                        id="outlined-multiline-flexible"
+                        label='Ingredients'
+                        placeholder="What goes into it? Separate instructions by commas"
+                        helperText='Separate ingredients by commas'
+                        maxRows={6}
+                        onChange={e => HandleIngrd(e.target.value)}
+                    />
                 </div>
                 <div className="form-field">
-
+                    <TextField
+                        sx={{ width: '50%' }}
+                        multiline
+                        required
+                        id="outlined-multiline-flexible"
+                        label='Instructions'
+                        placeholder="How do you make it? Separate instructions by commas"
+                        helperText='Separate instructions by commas'
+                        maxRows={6}
+                        onChange={e => HandleInstr(e.target.value)}
+                    />
+                </div>
+                <div className="form-field">
+                    <input
+                    required
+                    hidden
+                    accept="image/*"
+                    id="button-file"
+                    type="file"
+                    onChange={handleImageChange}
+                    />
+                    <label htmlFor="button-file">
+                        <Button sx={[{backgroundColor: theme.palette.primary.main, color:'white'}]} variant="contained" component='span'>Upload Image *</Button>
+                    </label>
                 </div>
             </form>
         </>
