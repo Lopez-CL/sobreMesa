@@ -103,11 +103,11 @@ const RecipeForm = () => {
                             MenuProps={{
                                 anchorOrigin: {
                                     vertical: 'bottom',
-                                    horizontal: 'left',
+                                    horizontal: 'right',
                                 },
                                 transformOrigin: {
                                     vertical: 'top',
-                                    horizontal: 'left',
+                                    horizontal: 'right',
                                 },
                             }}
                         >
