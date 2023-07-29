@@ -67,5 +67,8 @@
         justify-content: center;
         margin-bottom: 2rem;
     }
+    .photo{
+        width: 50%;
+    }
 
 /* 4. Media Queries */

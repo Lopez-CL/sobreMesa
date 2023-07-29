@@ -10,6 +10,7 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
+import CameraAltTwoToneIcon from '@mui/icons-material/CameraAltTwoTone';
 const occasions = ['Breakfast', 'Lunch', "Brunch", "Afternoon Snack", "Appetizer", "Dinner", "Dessert", "Bedtime Snack"]
 const cuisines = ['Latin', 'Indian', "American Gastro Pub", "Italian", "Hawaiian", "French", "Nigerian", "General Dessert, Georgian, Southern Comfort Food "]
 const ITEM_HEIGHT = 48;
@@ -27,7 +28,7 @@ const MenuProps = {
     },
     transformOrigin: {
         vertical: 'bottom',
-        horizontal: 'right',
+        horizontal: 'left',
     },
 };
 const RecipeForm = () => {
@@ -40,10 +41,6 @@ const RecipeForm = () => {
     const [ingredients, setIngredients] = useState([])
     const [imageFile, setImageFile] = useState(null)
     const theme = useTheme();
-    // const handleImageChange = (event) => {
-    //     const file = event.target.files[0];
-    //     setImageFile(file);
-    // };
     const getStyles = (cuisine, cuisineType, theme) => {
         return {
             fontWeight:
@@ -60,24 +57,24 @@ const RecipeForm = () => {
             typeof value === 'string' ? value.split(',') : value,
         );
     };
-    const submitHandler = e => {
-        e.preventDefault();
-        console.log('form data submitted')
-    }
-    const HandleIngrd = str => {
-        let makeArray = str.split(',')
-        console.log(makeArray)
-        setFoodOccasion(makeArray)
-    }
-    const HandleInstr = str => {
-        let makeArray = str.split(',')
-        console.log(makeArray)
-        setFoodOccasion(makeArray)
-    }
+    // const HandleIngrd = str => {
+    //     let makeArray = str.split(',')
+    //     console.log(makeArray)
+    //     setFoodOccasion(makeArray)
+    // }
+    // const HandleInstr = str => {
+    //     let makeArray = str.split(',')
+    //     console.log(makeArray)
+    //     setFoodOccasion(makeArray)
+    // }
     const handleImageChange = event =>{
         const file = event.target.files[0]
         setImageFile(file)
     }
+    // const submitHandler = e => {
+    //     e.preventDefault();
+    //     console.log('form data submitted')
+    // }
     return (
         <>
             <form id="form-box">
@@ -89,7 +86,7 @@ const RecipeForm = () => {
                         id="outline-required"
                         label="Name your Dish"
                         defaultValue="What's the dish called?"
-                    // onChange={e=> HandleTest(e.target.value) }
+                    onChange={e => setName(e.target.value) }
                     />
                 </div>
                 <div className="form-field">
@@ -102,14 +99,15 @@ const RecipeForm = () => {
                             defaultValue=''
                             MenuProps={{
                                 anchorOrigin: {
-                                    vertical: 'bottom',
+                                    vertical: 'top',
                                     horizontal: 'right',
                                 },
                                 transformOrigin: {
                                     vertical: 'top',
-                                    horizontal: 'right',
+                                    horizontal: 'left',
                                 },
                             }}
+                            onChange={e => setFoodOccasion(e.target.value)}
                         >
                             {occasions.map((occasion, idx) => (
                             <MenuItem key={idx} value={occasion}>
@@ -157,6 +155,8 @@ const RecipeForm = () => {
                         id='outlined-number'
                         label='Hours'
                         type="number"
+                        inputProps={{min: '0'}}
+                        onChange={e => setHours(e.target.value)}
                     />
                     <Typography variant="h3" sx={{ fontWeight: 'bold', mx: 1 }}> : </Typography>
                     <TextField
@@ -165,6 +165,8 @@ const RecipeForm = () => {
                         label='Minutes'
                         type="number"
                         helperText='Input minutes'
+                        inputProps={{min: '0'}}
+                        onChange={e => setMinutes(e.target.value) }
                     />
                 </div>
                 <div className="form-field">
@@ -177,7 +179,7 @@ const RecipeForm = () => {
                         placeholder="What goes into it? Separate instructions by commas"
                         helperText='Separate ingredients by commas'
                         maxRows={6}
-                        onChange={e => HandleIngrd(e.target.value)}
+                        onChange={e => setIngredients(e.target.value.split(','))}
                     />
                 </div>
                 <div className="form-field">
@@ -190,7 +192,7 @@ const RecipeForm = () => {
                         placeholder="How do you make it? Separate instructions by commas"
                         helperText='Separate instructions by commas'
                         maxRows={6}
-                        onChange={e => HandleInstr(e.target.value)}
+                        onChange={e => setInstructions(e.target.value.split(','))}
                     />
                 </div>
                 <div className="form-field">
@@ -202,8 +204,8 @@ const RecipeForm = () => {
                     type="file"
                     onChange={handleImageChange}
                     />
-                    <label htmlFor="button-file">
-                        <Button sx={[{backgroundColor: theme.palette.primary.main, color:'white'}]} variant="contained" component='span'>Upload Image *</Button>
+                    <label className="photo" htmlFor="button-file">
+                        <Button sx={[{backgroundColor: theme.palette.primary.main, color:'white', width:'100%'}]} variant="contained" component='span'> {<CameraAltTwoToneIcon sx={{pr:1, fontSize: '2.5rem'}} />}{<Typography variant="h6">Upload Image *</Typography>}</Button>
                     </label>
                 </div>
             </form>
