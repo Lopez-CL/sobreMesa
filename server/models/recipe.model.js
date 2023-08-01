@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const RecipeSchema = new mongoose.Schema ({
-    dishName:{
+    name:{
         type: String,
         required: [true, '*Give your recipe a name!*'],
         minlength: [2,'*The name must be two characters or longer*']
@@ -18,14 +18,12 @@ const RecipeSchema = new mongoose.Schema ({
         minItems: {value:1, message:"*You need at least 1 occasion!*"}
         // Remember to add this advice on the front end: Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.
     },
-    cookTime:{
-        hours:{
+    hours:{
             type: Number,
         },
-        minutes:{
-            type: Number,
-            required: [true,"*Must indicate minutes*"]
-        },
+    minutes:{
+        type: Number,
+        required: [true,"*Must indicate minutes*"]
     },
     ingredients:{
         type: [String],
@@ -37,15 +35,15 @@ const RecipeSchema = new mongoose.Schema ({
         minItems: {value: 3, message: '*Give us more than three steps!*'},
     },
     imageOfDish:{
-        data: {
+        ImageData: {
             type: Buffer,
             required: [true, '*Image required. Help us visualize that end goal*'],
         },
-        contentType: {
-            type: String,
-            required: [true, '*Please submit an accepted file type*'],
-            enum: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif']
-        },
+        // contentType: {
+        //     type: String,
+        //     required: [true, '*Please submit an accepted file type*'],
+        //     enum: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif']
+        // },
     },
     createdAt: Date,
     updatedAt: Date,

@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import axios from 'axios';
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -37,9 +38,9 @@ const RecipeForm = () => {
     const [foodOccasion, setFoodOccasion] = useState('')
     const [hours, setHours] = useState(0)
     const [minutes, setMinutes] = useState(0)
-    const [instructions, setInstructions] = useState([])
     const [ingredients, setIngredients] = useState([])
-    const [imageFile, setImageFile] = useState(null)
+    const [instructions, setInstructions] = useState([])
+    const [imageData, setImageData] = useState(null)
     const theme = useTheme();
     const getStyles = (cuisine, cuisineType, theme) => {
         return {
@@ -57,27 +58,37 @@ const RecipeForm = () => {
             typeof value === 'string' ? value.split(',') : value,
         );
     };
-    // const HandleIngrd = str => {
-    //     let makeArray = str.split(',')
-    //     console.log(makeArray)
-    //     setFoodOccasion(makeArray)
-    // }
-    // const HandleInstr = str => {
-    //     let makeArray = str.split(',')
-    //     console.log(makeArray)
-    //     setFoodOccasion(makeArray)
-    // }
     const handleImageChange = event =>{
         const file = event.target.files[0]
-        setImageFile(file)
+        setImageData(file)
     }
-    // const submitHandler = e => {
-    //     e.preventDefault();
-    //     console.log('form data submitted')
-    // }
+    const submitHandler = e => {
+        e.preventDefault();
+        let formData = new FormData();
+        formData.append('imageOfDish', imageData);
+        formData.append('name', name);
+        formData.append('cuisineType', JSON.stringify(cuisineType));
+        formData.append('foodOccasion', foodOccasion);
+        formData.append('hours', hours);
+        formData.append('minutes', minutes);
+        formData.append('ingredients', JSON.stringify(ingredients));
+        formData.append('instructions', JSON.stringify(instructions));
+        axios.post('http://localhost:8000/api/createRecipe',{
+            formData, headers: {
+                'Content Type': 'multipart/form-data'
+            }
+        })
+        .then(res => {
+            console.log(res.data)
+            console.log('success! on the front end')
+        }).catch(err =>{
+            console.log(err.response.data)
+        })
+
+    }
     return (
         <>
-            <form id="form-box">
+            <form id="form-box" onSubmit={submitHandler}>
                 <Typography variant="h2" sx={{ textAlign: 'center' }} gutterBottom>Add a Recipe</Typography>
                 <div className="form-field">
                     <TextField
