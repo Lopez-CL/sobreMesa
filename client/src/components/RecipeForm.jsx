@@ -13,7 +13,7 @@ import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import CameraAltTwoToneIcon from '@mui/icons-material/CameraAltTwoTone';
 const occasions = ['Breakfast', 'Lunch', "Brunch", "Afternoon Snack", "Appetizer", "Dinner", "Dessert", "Bedtime Snack"]
-const cuisines = ['Latin', 'Indian', "American Gastro Pub", "Italian", "Hawaiian", "French", "Nigerian", "General Dessert, Georgian, Southern Comfort Food "]
+const cuisines = ['Latin', 'Indian', "American Gastro Pub", "Italian", "Hawaiian", "French", "Nigerian", "General Dessert", "Georgian", "Southern Comfort Food"]
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -40,7 +40,7 @@ const RecipeForm = () => {
     const [minutes, setMinutes] = useState(0)
     const [ingredients, setIngredients] = useState([])
     const [instructions, setInstructions] = useState([])
-    const [imageData, setImageData] = useState(null)
+    const [imageOfDish, setImageOfDish] = useState(null)
     const theme = useTheme();
     const getStyles = (cuisine, cuisineType, theme) => {
         return {
@@ -60,22 +60,31 @@ const RecipeForm = () => {
     };
     const handleImageChange = event =>{
         const file = event.target.files[0]
-        setImageData(file)
+        setImageOfDish(file)
     }
     const submitHandler = e => {
         e.preventDefault();
+        console.log(name)
+        console.log(foodOccasion)
+        console.log(cuisineType)
+        console.log(hours)
+        console.log(minutes)
+        console.log(ingredients)
+        console.log(instructions)
+        console.log(imageOfDish)
         let formData = new FormData();
-        formData.append('imageOfDish', imageData);
         formData.append('name', name);
-        formData.append('cuisineType', JSON.stringify(cuisineType));
         formData.append('foodOccasion', foodOccasion);
+        formData.append('cuisineType', JSON.stringify(cuisineType));
         formData.append('hours', hours);
         formData.append('minutes', minutes);
         formData.append('ingredients', JSON.stringify(ingredients));
         formData.append('instructions', JSON.stringify(instructions));
-        axios.post('http://localhost:8000/api/createRecipe',{
-            formData, headers: {
-                'Content Type': 'multipart/form-data'
+        formData.append('imageOfDish', imageOfDish);
+        console.log( formData)
+        axios.post('http://localhost:8000/api/createRecipe',
+            formData, {headers: {
+                'Content-Type': 'multipart/form-data'
             }
         })
         .then(res => {
@@ -216,8 +225,11 @@ const RecipeForm = () => {
                     onChange={handleImageChange}
                     />
                     <label className="photo" htmlFor="button-file">
-                        <Button sx={[{backgroundColor: theme.palette.primary.main, color:'white', width:'100%'}]} variant="contained" component='span'> {<CameraAltTwoToneIcon sx={{pr:1, fontSize: '2.5rem'}} />}{<Typography variant="h6">Upload Image *</Typography>}</Button>
+                        <Button type="button" role="button" sx={[{backgroundColor: theme.palette.primary.main, color:'white', width:'100%'}]} variant="contained" component='span'> {<CameraAltTwoToneIcon sx={{pr:1, fontSize: '2.5rem'}} />}{<Typography variant="h6">Upload Image *</Typography>}</Button>
                     </label>
+                </div>
+                <div className="form-field" >
+                    <Button variant="contained" component='button' type='submit'>Submit</Button>
                 </div>
             </form>
         </>

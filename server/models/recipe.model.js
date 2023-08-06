@@ -6,17 +6,15 @@ const RecipeSchema = new mongoose.Schema ({
         required: [true, '*Give your recipe a name!*'],
         minlength: [2,'*The name must be two characters or longer*']
     },
-    cuisineType:{
-        type: String,
-        required: [true, '*Instructions required!*'],
-        enum: ['Caribbean', 'Italian']
-    },
     foodOccasion:{
-        type: [String],
+        type: String,
         required: [true, '*Indicate the best occasion(s) for this dish!*'],
-        maxItems: {value:4, message:"*Let's keep it under 4!*"},
-        minItems: {value:1, message:"*You need at least 1 occasion!*"}
-        // Remember to add this advice on the front end: Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.
+    },
+    cuisineType:{
+        type: [String],
+        required: [true, '*Instructions required!*'],
+        enum: ['Caribbean', 'Italian', 'Indian', 'Hawaiian', 'French', 'American Gastro Pub', 'Nigerian', 'General Dessert', 'Georgian', 'Southern Comfort Food'],
+        minItems: {value:1, message:"*Your dish should belong to at least 1 cuisine!*"}
     },
     hours:{
             type: Number,
@@ -35,7 +33,6 @@ const RecipeSchema = new mongoose.Schema ({
         minItems: {value: 3, message: '*Give us more than three steps!*'},
     },
     imageOfDish:{
-        ImageData: {
             type: Buffer,
             required: [true, '*Image required. Help us visualize that end goal*'],
         },
@@ -44,7 +41,6 @@ const RecipeSchema = new mongoose.Schema ({
         //     required: [true, '*Please submit an accepted file type*'],
         //     enum: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif']
         // },
-    },
     createdAt: Date,
     updatedAt: Date,
 },
