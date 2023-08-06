@@ -1,9 +1,17 @@
 
 const Recipe = require('../models/recipe.model');
-
-
 const createRecipe = (req, res) => {
-    Recipe.create(req.body)
+    console.log(req.body)
+    const { name, cuisineType, foodOccasion, hours, minutes, ingredients, instructions, imageOfDish } = req.body;
+    Recipe.create({
+        name,
+        foodOccasion,
+        cuisineType: JSON.parse(cuisineType),
+        hours: Number(hours),
+        minutes: Number(minutes),
+        ingredients: JSON.parse(ingredients),
+        instructions: JSON.parse(instructions),
+        imageOfDish: req.file.buffer})
         .then(newRecipe => res.json(newRecipe))
         .catch(err =>{
             console.log(err)
