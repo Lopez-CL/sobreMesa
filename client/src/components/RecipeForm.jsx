@@ -41,6 +41,7 @@ const RecipeForm = () => {
     const [ingredients, setIngredients] = useState([])
     const [instructions, setInstructions] = useState([])
     const [imageOfDish, setImageOfDish] = useState(null)
+    const [imageName, setImageName] = useState(null)
     const theme = useTheme();
     const getStyles = (cuisine, cuisineType, theme) => {
         return {
@@ -61,6 +62,7 @@ const RecipeForm = () => {
     const handleImageChange = event =>{
         const file = event.target.files[0]
         setImageOfDish(file)
+        setImageName(event.target.files[0].name)
     }
     const submitHandler = e => {
         e.preventDefault();
@@ -81,7 +83,7 @@ const RecipeForm = () => {
         formData.append('ingredients', JSON.stringify(ingredients));
         formData.append('instructions', JSON.stringify(instructions));
         formData.append('imageOfDish', imageOfDish);
-        console.log( formData)
+        // console.log( formData)
         axios.post('http://localhost:8000/api/createRecipe',
             formData, {headers: {
                 'Content-Type': 'multipart/form-data'
@@ -225,7 +227,12 @@ const RecipeForm = () => {
                     onChange={handleImageChange}
                     />
                     <label className="photo" htmlFor="button-file">
-                        <Button type="button" role="button" sx={[{backgroundColor: theme.palette.primary.main, color:'white', width:'100%'}]} variant="contained" component='span'> {<CameraAltTwoToneIcon sx={{pr:1, fontSize: '2.5rem'}} />}{<Typography variant="h6">Upload Image *</Typography>}</Button>
+                        <Button type="button" role="button" sx={[{backgroundColor: theme.palette.primary.main, color:'white', width:'100%'}]} variant="contained" component='span'> {<CameraAltTwoToneIcon sx={{pr:1, fontSize: '2.5rem'}} />}{<Typography sx={{fontSize: '1.2rem'}}variant="button">Upload Image *</Typography>}</Button>
+                        {
+                    imageOfDish?<Typography sx={{textAlign:'center', mt:1.5}} variant="body1">
+                    {`Added: ${imageName}`}
+                    </Typography>:''
+                    }
                     </label>
                 </div>
                 <div className="form-field" >
