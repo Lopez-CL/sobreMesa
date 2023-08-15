@@ -21,7 +21,16 @@ const createRecipe = (req, res) => {
 
 const getAllRecipes = (req, res) => {
     Recipe.find()
-        .then(recipes => res.json(recipes))
+        .then(recipes => {
+            const recipesWithBase64Images = recipes.map(recipe => {
+                let recipeObject = recipe.toObject(); // Convert Mongoose document to a plain JS object
+                if(recipeObject.imageOfDish && recipeObject.imageOfDish.data) {
+                    recipeObject.imageOfDish = Buffer.from(recipeObject.imageOfDish.data).toString('base64');
+                }
+                return recipeObject;
+            });
+            res.json(recipesWithBase64Images);
+        })
         .catch(err =>{
             console.log(err)
             res.status(400).json(err)

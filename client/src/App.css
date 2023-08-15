@@ -10,6 +10,7 @@
 
 
 /* 1. Global */
+
 /* 2. Animations */
 
 
@@ -51,6 +52,7 @@
     .MuiTab-root{
         color: #995112 !important;
     }
+
     /* Form */
     #form-box{
         background-color: rgba(1, 208, 254, 0.095);
@@ -58,17 +60,22 @@
         padding: 5px;
         border-radius: 1rem;
         margin: 0 auto;
-        width: 50%;
+        width: 40%;
     }
     .form-field{
-        /* width: 75%; */
         margin: 0 auto;
         display: flex;
         justify-content: center;
         margin-bottom: 2rem;
     }
+    .time-input{
+        width: 50%;
+    }
     .photo{
         width: 50%;
+    }
+    .limit-text{
+        color: slategrey;
     }
 
 /* 4. Media Queries */

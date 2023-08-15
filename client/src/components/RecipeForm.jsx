@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -12,8 +13,10 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import CameraAltTwoToneIcon from '@mui/icons-material/CameraAltTwoTone';
+//occasions and cuisines hold data options for my selector fields
 const occasions = ['Breakfast', 'Lunch', "Brunch", "Afternoon Snack", "Appetizer", "Dinner", "Dessert", "Bedtime Snack"]
 const cuisines = ['Latin', 'Indian', "American Gastro Pub", "Italian", "Hawaiian", "French", "Nigerian", "General Dessert", "Georgian", "Southern Comfort Food"]
+// Following 3 variables help style and format my multiselect input
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -33,6 +36,7 @@ const MenuProps = {
     },
 };
 const RecipeForm = () => {
+    // All setters for form data
     const [name, setName] = useState('')
     const [cuisineType, setCuisineType] = useState([])
     const [foodOccasion, setFoodOccasion] = useState('')
@@ -42,7 +46,10 @@ const RecipeForm = () => {
     const [instructions, setInstructions] = useState([])
     const [imageOfDish, setImageOfDish] = useState(null)
     const [imageName, setImageName] = useState(null)
+    const navigate = useNavigate()
+    // Imports app color theme
     const theme = useTheme();
+    // Controls font styles of items selected for multiselect element
     const getStyles = (cuisine, cuisineType, theme) => {
         return {
             fontWeight:
@@ -51,29 +58,23 @@ const RecipeForm = () => {
                     : theme.typography.fontWeightMedium,
         };
     }
+    // Builds list of cuisine type data
     const handleCuisineChange = (event) => {
         const {
-            target: { value },
-        } = event;
+            target: { value } } = event;
         setCuisineType(
             typeof value === 'string' ? value.split(',') : value,
         );
     };
+    // File data must be handled differently compared to strings and arrays
     const handleImageChange = event =>{
         const file = event.target.files[0]
         setImageOfDish(file)
         setImageName(event.target.files[0].name)
     }
+    // handles full form submission event
     const submitHandler = e => {
         e.preventDefault();
-        console.log(name)
-        console.log(foodOccasion)
-        console.log(cuisineType)
-        console.log(hours)
-        console.log(minutes)
-        console.log(ingredients)
-        console.log(instructions)
-        console.log(imageOfDish)
         let formData = new FormData();
         formData.append('name', name);
         formData.append('foodOccasion', foodOccasion);
@@ -83,7 +84,6 @@ const RecipeForm = () => {
         formData.append('ingredients', JSON.stringify(ingredients));
         formData.append('instructions', JSON.stringify(instructions));
         formData.append('imageOfDish', imageOfDish);
-        // console.log( formData)
         axios.post('http://localhost:8000/api/createRecipe',
             formData, {headers: {
                 'Content-Type': 'multipart/form-data'
@@ -92,6 +92,7 @@ const RecipeForm = () => {
         .then(res => {
             console.log(res.data)
             console.log('success! on the front end')
+            navigate('/recipeandbooks')
         }).catch(err =>{
             console.log(err.response.data)
         })
@@ -100,24 +101,26 @@ const RecipeForm = () => {
     return (
         <>
             <form id="form-box" onSubmit={submitHandler}>
+                {/* DISH NAME */}
                 <Typography variant="h2" sx={{ textAlign: 'center' }} gutterBottom>Add a Recipe</Typography>
                 <div className="form-field">
                     <TextField
                         sx={{ width: '50%' }}
                         required
                         id="outline-required"
-                        label="Name your Dish"
+                        label="Name of Dish"
                         defaultValue="What's the dish called?"
                     onChange={e => setName(e.target.value) }
                     />
                 </div>
+                {/* OCCASION FOR MEAL */}
                 <div className="form-field">
                     <FormControl required sx={{ width: '50%' }}>
-                        <InputLabel id="occasion-select-level">When's the best time to have this meal?</InputLabel>
+                        <InputLabel id="occasion-select-level">Meal occasion to eat dish</InputLabel>
                         <Select
                             labelId="occasion-select-level"
                             id="occasion-select-level"
-                            label="When's the best time to have this meal?"
+                            label="Meal occasion to eat dish"
                             defaultValue=''
                             MenuProps={{
                                 anchorOrigin: {
@@ -139,6 +142,7 @@ const RecipeForm = () => {
                         </Select>
                     </FormControl>
                 </div>
+                {/* CUISINE TYPE(S) */}
                 <div className="form-field">
                     <FormControl required sx={{ width: '50%' }}>
                         <InputLabel id="demo-multiple-chip-label">What Type of Cuisine</InputLabel>
@@ -170,8 +174,10 @@ const RecipeForm = () => {
                         </Select>
                     </FormControl>
                 </div>
-                <div className="form-field">
+                {/* COOKING TIME */}
+                <div className="form-field time-input">
                     <TextField
+                    className="time-input"
                         required
                         helperText='Input hours'
                         id='outlined-number'
@@ -182,6 +188,7 @@ const RecipeForm = () => {
                     />
                     <Typography variant="h3" sx={{ fontWeight: 'bold', mx: 1 }}> : </Typography>
                     <TextField
+                        className="time-input"
                         required
                         id='outlined-number'
                         label='Minutes'
@@ -191,6 +198,7 @@ const RecipeForm = () => {
                         onChange={e => setMinutes(e.target.value) }
                     />
                 </div>
+                {/* INGREDIENTS */}
                 <div className="form-field">
                     <TextField
                         sx={{ width: '50%' }}
@@ -204,6 +212,7 @@ const RecipeForm = () => {
                         onChange={e => setIngredients(e.target.value.split(','))}
                     />
                 </div>
+                {/* INSTRUCTIONS */}
                 <div className="form-field">
                     <TextField
                         sx={{ width: '50%' }}
@@ -217,7 +226,9 @@ const RecipeForm = () => {
                         onChange={e => setInstructions(e.target.value.split(','))}
                     />
                 </div>
+                {/* IMAGE OF DISH */}
                 <div className="form-field">
+                    {/* Material UI doesn't have a proper file input component, so attempting a work-around. Input creates the form action, the label associates button action with input. Button component is the UI piece */}
                     <input
                     required
                     hidden
@@ -227,11 +238,13 @@ const RecipeForm = () => {
                     onChange={handleImageChange}
                     />
                     <label className="photo" htmlFor="button-file">
-                        <Button type="button" role="button" sx={[{backgroundColor: theme.palette.primary.main, color:'white', width:'100%'}]} variant="contained" component='span'> {<CameraAltTwoToneIcon sx={{pr:1, fontSize: '2.5rem'}} />}{<Typography sx={{fontSize: '1.2rem'}}variant="button">Upload Image *</Typography>}</Button>
+                        <Button role="button" sx={[{backgroundColor: theme.palette.primary.main, color:'white', width:'100%'}]} variant="contained" component='span'> {<CameraAltTwoToneIcon sx={{pr:1, fontSize: '2.5rem'}} />}{<Typography sx={{fontSize: '1.2rem'}}variant="button">Upload Image *</Typography>}</Button>
                         {
-                    imageOfDish?<Typography sx={{textAlign:'center', mt:1.5}} variant="body1">
+                    imageOfDish?<Typography className="limit-text" sx={{textAlign:'center', mt:1.5}} variant="body1">
                     {`Added: ${imageName}`}
-                    </Typography>:''
+                    </Typography>:<Typography className="limit-text" sx={{textAlign:'center', mt:1}} variant="body1">
+                    Maximum size per file is 5MB
+                    </Typography>
                     }
                     </label>
                 </div>
