@@ -30,7 +30,7 @@ module.exports = app => {
             res.status(500).json({ error: error.message});
         }
     });
-    app.get('/api/getRecipes/', RecipeController.getAllRecipes);
+    app.get('/api/getRecipes', RecipeController.getAllRecipes);
     app.get('/api/getRecipe/:id_', RecipeController.getRecipeById);
     app.put('/api/editRecipe/:id_', RecipeController.updateRecipe);
     app.delete('/api/delete/:id_', RecipeController.deleteRecipe);
