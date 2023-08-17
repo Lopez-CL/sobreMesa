@@ -22,10 +22,10 @@ const createRecipe = (req, res) => {
 const getAllRecipes = (req, res) => {
     Recipe.find()
         .then(recipes => {
-            const recipesWithBase64Images = recipes.map(recipe => {
+            const recipesWithBase64Images = recipes.map(recipe => { // create an array of image data objects
                 let recipeObject = recipe.toObject(); // Convert Mongoose document to a plain JS object
-                if(recipeObject.imageOfDish && recipeObject.imageOfDish.data) {
-                    recipeObject.imageOfDish = Buffer.from(recipeObject.imageOfDish.data).toString('base64');
+                if(recipeObject.imageOfDish && recipeObject.imageOfDish.data) { // check if there is an image object with data
+                    recipeObject.imageOfDish = Buffer.from(recipeObject.imageOfDish.data).toString('base64'); // if so, encode binary data in base64 string
                 }
                 return recipeObject;
             });

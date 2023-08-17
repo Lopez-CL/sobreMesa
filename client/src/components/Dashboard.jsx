@@ -7,7 +7,7 @@ import {Typography}  from '@mui/material'
 const Dashboard = () =>{
     const theme = useTheme();
     const [recipes, setRecipes] = useState([])
-    const getMimeType = (base64Data) => {
+    const getMimeType = (base64Data) => { // decodes a portion of the base64 encoded string into bytes and determine the file type
         // console.log(typeof base64Data, base64Data);
     // Remove the prefix if it exists
         // const prefixMatch = base64Data.match(/^data:(.*?);base64,/);

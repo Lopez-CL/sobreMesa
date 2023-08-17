@@ -1,8 +1,8 @@
 const RecipeController = require("../controllers/recipe.controller");
-const multer = require('multer');
-const path = require('path')
+const multer = require('multer'); //middleware that works with multipart/form-data
+const path = require('path') // Node.js module that works with file and directory paths
 const upload = multer({
-    storage: multer.memoryStorage(),
+    storage: multer.memoryStorage(), //configuring middleware so that files are stored in memory as buffers (binary data).
     limits: {
         fileSize: 5 * 1024 * 1024, // keep images size below 5MB
     },
