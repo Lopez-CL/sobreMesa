@@ -1,7 +1,16 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
 import axios from "axios";
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShareIcon from '@mui/icons-material/Share';
+import CardActions from '@mui/material/CardActions';
 import {Typography}  from '@mui/material'
 
 const Dashboard = () =>{
