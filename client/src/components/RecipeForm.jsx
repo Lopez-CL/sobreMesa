@@ -15,7 +15,7 @@ import Button from "@mui/material/Button";
 import CameraAltTwoToneIcon from '@mui/icons-material/CameraAltTwoTone';
 //occasions and cuisines hold data options for my selector fields
 const occasions = ['Breakfast', 'Lunch', "Brunch", "Afternoon Snack", "Appetizer", "Dinner", "Dessert", "Bedtime Snack"]
-const cuisines = ['Latin', 'Indian', "American Gastro Pub", "Italian", "Hawaiian", "French", "Nigerian", "General Dessert", "Georgian", "Southern Comfort Food"]
+const cuisines = ['Latin', 'Caribbean', 'Indian', "American Gastro Pub", "Italian", "Hawaiian", "French", "Nigerian", "General Dessert", "Georgian", "Southern Comfort Food"]
 // Following 3 variables help style and format my multiselect input
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -38,6 +38,7 @@ const MenuProps = {
 const RecipeForm = () => {
     // All setters for form data
     const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
     const [cuisineType, setCuisineType] = useState([])
     const [foodOccasion, setFoodOccasion] = useState('')
     const [hours, setHours] = useState(0)
@@ -77,6 +78,7 @@ const RecipeForm = () => {
         e.preventDefault();
         let formData = new FormData();
         formData.append('name', name);
+        formData.append('description', description);
         formData.append('foodOccasion', foodOccasion);
         formData.append('cuisineType', JSON.stringify(cuisineType));
         formData.append('hours', hours);
@@ -107,10 +109,26 @@ const RecipeForm = () => {
                     <TextField
                         sx={{ width: '50%' }}
                         required
+                        multiline
                         id="outline-required"
                         label="Name of Dish"
                         defaultValue="What's the dish called?"
                     onChange={e => setName(e.target.value) }
+                    />
+                </div>
+                    {/* Meal Description */}
+                <div className="form-field">
+                    <TextField
+                        sx={{ width: '50%' }}
+                        multiline
+                        required
+                        id="outlined-multiline-flexible"
+                        label='Description'
+                        placeholder="Describe the dish"
+                        // helperText='Separate instructions by commas'
+                        minRows={2}
+                        maxRows={3}
+                        onChange={e => setDescription(e.target.value)}
                     />
                 </div>
                 {/* OCCASION FOR MEAL */}
