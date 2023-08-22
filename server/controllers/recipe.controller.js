@@ -2,9 +2,10 @@
 const Recipe = require('../models/recipe.model');
 const createRecipe = (req, res) => {
     console.log(req.body)
-    const { name, cuisineType, foodOccasion, hours, minutes, ingredients, instructions, imageOfDish } = req.body;
+    const { name, description, cuisineType, foodOccasion, hours, minutes, ingredients, instructions, imageOfDish } = req.body;
     Recipe.create({
         name,
+        description,
         foodOccasion,
         cuisineType: JSON.parse(cuisineType),
         hours: Number(hours),

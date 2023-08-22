@@ -6,6 +6,11 @@ const RecipeSchema = new mongoose.Schema ({
         required: [true, '*Give your recipe a name!*'],
         minlength: [2,'*The name must be two characters or longer*']
     },
+    description:{
+        type: String,
+        required: [true, '*Please describe your dish!*'],
+        minlength: [15,'*The description must 15 characters or longer*']
+    },
     foodOccasion:{
         type: String,
         required: [true, '*Indicate the best occasion(s) for this dish!*'],
@@ -13,7 +18,7 @@ const RecipeSchema = new mongoose.Schema ({
     cuisineType:{
         type: [String],
         required: [true, '*Instructions required!*'],
-        enum: ['Caribbean', 'Italian', 'Indian', 'Hawaiian', 'French', 'American Gastro Pub', 'Nigerian', 'General Dessert', 'Georgian', 'Southern Comfort Food'],
+        enum: ['Caribbean', 'Latin', 'Italian', 'Indian', 'Hawaiian', 'French', 'American Gastro Pub', 'Nigerian', 'General Dessert', 'Georgian', 'Southern Comfort Food'],
         minItems: {value:1, message:"*Your dish should belong to at least 1 cuisine!*"}
     },
     hours:{
