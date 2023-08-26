@@ -14,6 +14,12 @@ import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import { Icon, Typography, styled } from '@mui/material'
+/*Some to-dos:
+- create a footer
+- determine layout of recipes; I'm thinking centered container with up to three recipes displayed in a row spaced 3 columns out.
+- test layout by adding more recipes
+- revisit recipe card layout
+*/
 const Dashboard = () => {
     const [expanded, setExpanded] = useState(false);
     const theme = useTheme();
@@ -61,7 +67,7 @@ const Dashboard = () => {
     }, [])
     return (
         <>
-                <div className="recipe-holder">
+                <div className="recipe-container">
                     {recipes.map((recipe, idx) => (
                             <Card sx={{ width: '20%' }}>
                                 <CardHeader
