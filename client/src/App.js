@@ -2,6 +2,7 @@ import './App.css';
 import {createTheme, ThemeProvider} from '@mui/material/styles'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import Dashboard from './components/Dashboard';
 import RecipeForm from './components/RecipeForm';
 import FamilyCookBooks from './components/FamilyCookBooks';
@@ -35,6 +36,7 @@ function App() {
           <Route exact path='/familycookbooks' element={<FamilyCookBooks/>}/>
           <Route exact path='/randomrecipe' element={<RandomRecipe/>}/>
         </Routes>
+        <Footer></Footer>
         </BrowserRouter>
     </ThemeProvider>
   );

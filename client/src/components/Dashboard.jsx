@@ -14,21 +14,22 @@ import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import { Icon, Typography, styled } from '@mui/material'
-/*Some to-dos:
-- create a footer
-- determine layout of recipes; I'm thinking centered container with up to three recipes displayed in a row spaced 3 columns out.
-- test layout by adding more recipes
-- revisit recipe card layout
-*/
 const Dashboard = () => {
-    const [expanded, setExpanded] = useState(false);
     const theme = useTheme();
     const [recipes, setRecipes] = useState([])
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
+    const [expandedIndex, setExpandedIndex] = useState(null);
+    const handleExpandClick = idx => {
+        if (expandedIndex === idx) {
+            setExpandedIndex(null); // collapse the card if it's already expanded
+        } else {
+            setExpandedIndex(idx); // expand the card
+            console.log(idx)
+            console.log(expandedIndex)
+            console.log(idx === expandedIndex)
+        }
     }
-    const ExpandMore = styled(IconButton)(({ theme, expand }) => ({
-        transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+    const ExpandMore = styled(IconButton)(({ theme, expanded }) => ({
+        transform: expanded ? 'rotate(0deg)' : 'rotate(180deg)',
         marginLeft: 'auto',
         transition: theme.transitions.create('transform', {
         duration: theme.transitions.duration.shortest,
@@ -69,10 +70,10 @@ const Dashboard = () => {
         <>
                 <div className="recipe-container">
                     {recipes.map((recipe, idx) => (
-                            <Card sx={{ width: '20%' }}>
+                            <Card key = {idx} sx={idx !== expandedIndex?{height:"max-content"}:''}>
                                 <CardHeader
                                     title={recipe.name}
-                                    subheader={`Cuisine: ${recipe.cuisineType.join(', ')}`}
+                                    subheader={`Time to cook: Hours: ${recipe.hours} Minutes: ${recipe.minutes}`}
                                 />
                                 <CardMedia
                                     component='img'
@@ -88,15 +89,15 @@ const Dashboard = () => {
                                 </CardContent>
                                 <CardActions disableSpacing>
                                     <ExpandMore
-                                        expand={expanded}
-                                        onClick={handleExpandClick}
-                                        aria-expanded={expanded}
+                                        expanded={expandedIndex === idx}
+                                        onClick={() => handleExpandClick(idx)}
+                                        aria-expanded={expandedIndex === idx}
                                         aria-label="show more"
                                     >
                                         <ExpandMoreIcon />
                                     </ExpandMore>
                                 </CardActions>
-                                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                <Collapse in={expandedIndex === idx} timeout="auto" unmountOnExit>
                                     <CardContent>
                                         <Typography paragraph>
                                         Instructions: {recipe.ingredients.join(",")}
