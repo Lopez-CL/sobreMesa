@@ -16,71 +16,89 @@
 
 /* 3. Components */
 
-    /* NavBar */
-    header{
-        margin-bottom: 2rem;
-    }
-    #menu{
-        height: fit-content;
-        display: flex;
-        justify-content: flex-end;
-    }
-    #menu-button{
-        height: fit-content;
-        width: 5rem;
-    }
-    #logo{
-        display: grid;
-        grid-template-rows: auto;
-        justify-content: center;
-        margin-bottom: 1rem;
-    }
-    #logo > img{
-        margin: auto 0;
-        width: 275px;
-        height: 275px;
-    }
+/* NavBar */
+header {
+    margin-bottom: 2rem;
+}
 
-    /* .MuiTab-root{
+#menu {
+    height: fit-content;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#menu-button {
+    height: fit-content;
+    width: 5rem;
+}
+
+#logo {
+    display: grid;
+    grid-template-rows: auto;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+#logo>img {
+    margin: auto 0;
+    width: 275px;
+    height: 275px;
+}
+
+/* .MuiTab-root{
         cursor: pointer;
     } */
 
-    .MuiTabs-flexContainer{
-        display: flex;
-        justify-content: space-around;
-    }
-    .MuiTab-root{
-        color: #995112 !important;
-    }
+.MuiTabs-flexContainer {
+    display: flex;
+    justify-content: space-around;
+}
 
-    /* Footer */
+.MuiTab-root {
+    color: #995112 !important;
+}
 
-    /* Form */
-    #form-box{
-        background-color: rgba(1, 208, 254, 0.095);
-        border: 1px solid black;
-        padding: 5px;
-        border-radius: 1rem;
-        margin: 0 auto;
-        width: 40%;
-    }
-    .form-field{
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 2rem;
-    }
-    .time-input{
-        width: 50%;
-    }
-    .photo{
-        width: 50%;
-    }
-    .limit-text{
-        color: slategrey;
-    }
+/* Footer */
+footer {
+    margin-top: 3rem;
+}
 
-    /* Dashboard */
+/* Form */
+#form-box {
+    background-color: rgba(1, 208, 254, 0.095);
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 1rem;
+    margin: 0 auto;
+    width: 40%;
+}
 
+.form-field {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.time-input {
+    width: 50%;
+}
+
+.photo {
+    width: 50%;
+}
+
+.limit-text {
+    color: slategrey;
+}
+
+/* Dashboard */
+.recipe-container {
+    display: grid;
+    padding: 1.5rem;
+    width:100%;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 4rem;
+} 
 
 /* 4. Media Queries */
