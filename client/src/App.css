@@ -100,5 +100,7 @@ footer {
     grid-template-columns: repeat(3, 1fr);
     column-gap: 4rem;
 } 
-
+#recipe-card{
+    cursor: pointer;
+}
 /* 4. Media Queries */

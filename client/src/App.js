@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import RecipeForm from './components/RecipeForm';
 import FamilyCookBooks from './components/FamilyCookBooks';
 import RandomRecipe from './components/RandomRecipe';
+import RecipeView from './components/RecipeView';
 const theme = createTheme({
   palette:{
     primary: {
@@ -32,6 +33,7 @@ function App() {
         <Routes>
           {/* '/' will eventually be login page */}
           <Route exact path='/recipeandbooks' element={<Dashboard/>}/>
+          <Route exact path='/view/recipe/:str' element={<RecipeView/>}/>
           <Route exact path='/addrecipe' element={<RecipeForm/>}/>
           <Route exact path='/familycookbooks' element={<FamilyCookBooks/>}/>
           <Route exact path='/randomrecipe' element={<RandomRecipe/>}/>

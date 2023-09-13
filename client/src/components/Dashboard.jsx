@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 import Card from '@mui/material/Card';
@@ -16,6 +17,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import { Icon, Typography, styled } from '@mui/material'
 const Dashboard = () => {
     const theme = useTheme();
+    const nav = useNavigate();
     const [recipes, setRecipes] = useState([])
     const [expandedIndex, setExpandedIndex] = useState(null);
     const handleExpandClick = idx => {
@@ -23,9 +25,9 @@ const Dashboard = () => {
             setExpandedIndex(null); // collapse the card if it's already expanded
         } else {
             setExpandedIndex(idx); // expand the card
-            console.log(idx)
-            console.log(expandedIndex)
-            console.log(idx === expandedIndex)
+            // console.log(idx)
+            // console.log(expandedIndex)
+            // console.log(idx === expandedIndex)
         }
     }
     const ExpandMore = styled(IconButton)(({ theme, expanded }) => ({
@@ -70,7 +72,7 @@ const Dashboard = () => {
         <>
                 <div className="recipe-container">
                     {recipes.map((recipe, idx) => (
-                            <Card key = {idx} sx={idx !== expandedIndex?{height:"max-content"}:''}>
+                            <Card onClick={e => nav(`/view/recipe/${recipe._id}`)} id = "recipe-card" key = {idx} sx={idx !== expandedIndex?{height:"max-content"}:''}>
                                 <CardHeader
                                     title={recipe.name}
                                     subheader={`Time to cook: Hours: ${recipe.hours} Minutes: ${recipe.minutes}`}
