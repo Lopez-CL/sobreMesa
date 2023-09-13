@@ -4,7 +4,7 @@ const Footer = () =>{
     return(
         <>
             <div>
-                <p>Placeholder</p>
+                <p>Footer</p>
             </div>
         </>
     )
