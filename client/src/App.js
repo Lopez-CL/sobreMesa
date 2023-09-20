@@ -33,7 +33,7 @@ function App() {
         <Routes>
           {/* '/' will eventually be login page */}
           <Route exact path='/recipeandbooks' element={<Dashboard/>}/>
-          <Route exact path='/view/recipe/:str' element={<RecipeView/>}/>
+          <Route exact path='/view/recipe/:_id' element={<RecipeView/>}/>
           <Route exact path='/addrecipe' element={<RecipeForm/>}/>
           <Route exact path='/familycookbooks' element={<FamilyCookBooks/>}/>
           <Route exact path='/randomrecipe' element={<RandomRecipe/>}/>
