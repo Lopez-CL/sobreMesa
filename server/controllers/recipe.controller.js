@@ -39,7 +39,13 @@ const getAllRecipes = (req, res) => {
 }
 const getRecipeById = (req, res) => {
     Recipe.findOne({_id: req.params._id})
-        .then(recipe => res.json(recipe))
+        .then(recipe => {
+            let recipeObject = recipe.toObject();
+            if(recipeObject.imageOfDish && recipeObject.imageOfDish.data){
+                recipeObject.imageOfDish = Buffer.from(recipeObject.imageOfDish.data).toString('base64');
+            }
+            res.json(recipeObject)
+        })
         .catch(err =>{
             console.log(err)
             res.status(400).json(err)

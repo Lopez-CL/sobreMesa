@@ -31,7 +31,7 @@ module.exports = app => {
         }
     });
     app.get('/api/getRecipes', RecipeController.getAllRecipes);
-    app.get('/api/getRecipe/:id_', RecipeController.getRecipeById);
-    app.put('/api/editRecipe/:id_', RecipeController.updateRecipe);
-    app.delete('/api/delete/:id_', RecipeController.deleteRecipe);
+    app.get('/api/getRecipe/:_id', RecipeController.getRecipeById);
+    app.put('/api/editRecipe/:_id', RecipeController.updateRecipe);
+    app.delete('/api/delete/:_id', RecipeController.deleteRecipe);
 }

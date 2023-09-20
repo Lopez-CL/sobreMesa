@@ -41,11 +41,6 @@ const RecipeSchema = new mongoose.Schema ({
             type: Buffer,
             required: [true, '*Image required. Help us visualize that end goal*'],
         },
-        // contentType: {
-        //     type: String,
-        //     required: [true, '*Please submit an accepted file type*'],
-        //     enum: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif']
-        // },
     createdAt: Date,
     updatedAt: Date,
 },
