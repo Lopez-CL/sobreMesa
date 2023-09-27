@@ -101,6 +101,29 @@ footer {
     column-gap: 4rem;
 } 
 #recipe-card{
-    cursor: pointer;
+    transition: transform .5s ease-in-out;
 }
+#recipe-card:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+/* Recipe View */
+
+.recipe-view-card{
+    padding: 2rem;
+    border: black solid .5px;
+    width:fit-content;
+    margin: 0 auto;
+    border-radius: 1rem;
+}
+.recipe-view-header{
+    display: flex;
+
+}
+
+.recipe-view-header > img {
+    width: 200px;
+}
+
 /* 4. Media Queries */

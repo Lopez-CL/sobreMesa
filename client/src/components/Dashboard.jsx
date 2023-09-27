@@ -72,12 +72,14 @@ const Dashboard = () => {
         <>
                 <div className="recipe-container">
                     {recipes.map((recipe, idx) => (
-                            <Card onClick={e => nav(`/view/recipe/${recipe._id}`)} id = "recipe-card" key = {idx} sx={idx !== expandedIndex?{height:"max-content"}:''}>
+                            <Card key = {idx} sx={idx !== expandedIndex?{height:"max-content"}:''}>
                                 <CardHeader
                                     title={recipe.name}
                                     subheader={`Time to cook: Hours: ${recipe.hours} Minutes: ${recipe.minutes}`}
                                 />
                                 <CardMedia
+                                    onClick={e => nav(`/view/recipe/${recipe._id}`)} 
+                                    id = "recipe-card" 
                                     component='img'
                                     height='170'
                                     image={`data:${getMimeType(recipe.imageOfDish)};base64,${recipe.imageOfDish}`}
