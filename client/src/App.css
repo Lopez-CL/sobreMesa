@@ -119,11 +119,16 @@ footer {
 }
 .recipe-view-header{
     display: flex;
-
+    align-items: flex-end;
+    flex: 0 1 auto;
+    margin-bottom:  1rem;
 }
 
 .recipe-view-header > img {
     width: 200px;
+    height: 200px;
+    flex: 0 1 auto;
+    border-radius: 1rem;
 }
 
 /* 4. Media Queries */

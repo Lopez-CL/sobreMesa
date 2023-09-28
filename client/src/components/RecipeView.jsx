@@ -31,16 +31,20 @@ const RecipeView = () => {
     },[])
     return (
         <>
-        <div className="recipe-view-card">
-            {recipe.imageOfDish && <div className="recipe-view-header">
+        <div className={ recipe.imageOfDish && `recipe-view-card`}>
+            {recipe.imageOfDish && 
+            <div className="recipe-view-header">
                 {/* data: prefix is crucial. Without it, the browser will not recognize the string as a valid Data URL, and it will not display the image. */}
                 <img src={`data:${getMimeType(recipe.imageOfDish)};base64,${recipe.imageOfDish}`}/>
                 <div>
-                    <Typography sx={{fontSize:'h2.fontSize'}} variant="h1">{recipe.name}</Typography>
-                    <Typography>{`Time to cook ${recipe.hours}hrs : ${recipe.minutes}min`} |  Cuisine: {`${recipe.cuisineType.join(', ')}`}</Typography>
+                    <Typography sx={{fontSize:'h2.fontSize', ml:4}} variant="h1">{recipe.name}</Typography>
+                    <em><Typography sx={{ fontSize: 'h5.fontSize',ml:4}} variant="h1">Best at {`${recipe.foodOccasion}`}, {`${recipe.cuisineType.join(', ')}`}, takes {`${recipe.hours}hrs and ${recipe.minutes}min`} to cook</Typography></em>
                 </div>
-                
             </div>}
+            <Typography sx={{fontSize:'h6.fontSize', textAlign:'center'}}variant="body1">{recipe.description}</Typography>
+            <div className="instr-desc">
+                
+            </div>
         </div>
         <div>
 
