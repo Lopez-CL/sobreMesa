@@ -131,4 +131,12 @@ footer {
     border-radius: 1rem;
 }
 
+#ingrd-intsr{
+    margin-top: 1rem;
+    display: flex;
+    grid-template-columns: repeat(1fr,2);
+    justify-content: center;
+    column-gap: 8rem;
+}
+
 /* 4. Media Queries */
