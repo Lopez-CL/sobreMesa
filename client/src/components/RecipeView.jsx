@@ -38,12 +38,21 @@ const RecipeView = () => {
                 <img src={`data:${getMimeType(recipe.imageOfDish)};base64,${recipe.imageOfDish}`}/>
                 <div>
                     <Typography sx={{fontSize:'h2.fontSize', ml:4}} variant="h1">{recipe.name}</Typography>
-                    <em><Typography sx={{ fontSize: 'h5.fontSize',ml:4}} variant="h1">Best at {`${recipe.foodOccasion}`}, {`${recipe.cuisineType.join(', ')}`}, takes {`${recipe.hours}hrs and ${recipe.minutes}min`} to cook</Typography></em>
+                    <em><Typography sx={{ fontSize: 'h5.fontSize',ml:4}} variant="h2">Best at {`${recipe.foodOccasion}`}, {`${recipe.cuisineType.join(', ')}`}, takes {`${recipe.hours}hrs and ${recipe.minutes}min`} to cook</Typography></em>
                 </div>
             </div>}
             <Typography sx={{fontSize:'h6.fontSize', textAlign:'center'}}variant="body1">{recipe.description}</Typography>
-            <div className="instr-desc">
-                
+            <div id="ingrd-intsr">
+                    <div>
+                        <Typography sx={{fontSize: 'h4.fontSize'}} variant='h3'>Ingredients</Typography>
+                        {/* Ingredient Component, consider making a hide for it */}
+                    </div>
+                    <div>
+                        
+                        <Typography sx={{fontSize: 'h4.fontSize'}} variant="h3">Instructions</Typography>
+                        {/* Description Component  */}
+                    </div>
+                    
             </div>
         </div>
         <div>
