@@ -1,6 +1,6 @@
 import {React, useState} from "react";
 import { useTheme } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import MenuButton from "./MenuButton";
 import logo from '../assets/logo.png'
 import {Tabs} from '@mui/material'
@@ -8,7 +8,9 @@ import {Tab} from '@mui/material'
 const NavBar = () => {
     const theme = useTheme();
     const navigate = useNavigate();
-    const [value, setValue] = useState('recipeAndBooks');
+    const location = useLocation();
+    const [value, setValue] = useState('recipeandbooks');
+    const currentValue = location.pathname.substring(1)
     const handleChange = ( event, newValue) => {
         console.log(newValue)
         setValue(newValue)
@@ -23,11 +25,11 @@ const NavBar = () => {
             <nav>
                 <Tabs
                     id='tab-bar'
-                    value={value}
+                    value={currentValue}
                     onChange={handleChange}
                     indicatorColor="primary"
                     aria-label="nav-tabs">
-                <Tab className="tab" sx={{color: theme.palette.primary.dark}} value="recipeAndBooks" label="Recipe & Books"/>
+                <Tab className="tab" sx={{color: theme.palette.primary.dark}} value="recipeandBooks" label="Recipe & Books"/>
                 <Tab className="tab" sx={{color: theme.palette.primary.dark}} value="addrecipe" label="Add Recipe"/>
                 <Tab className="tab" sx={{color: theme.palette.primary.dark}} value="familycookbooks" label="Family Cookbooks"/>
                 <Tab className="tab" sx={{color: theme.palette.primary.dark}} value="randomrecipe" label="Random Recipes"/>

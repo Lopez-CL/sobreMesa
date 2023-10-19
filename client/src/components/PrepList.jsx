@@ -1,37 +1,17 @@
 import React, { useState } from "react";
-import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
+import FormGroup  from "@mui/material/FormGroup";
 import FormControlLabel from '@mui/material/FormControlLabel';
-
-const PrepList = () => {
-    onst[checked, setChecked] = React.useState([true, false]);
-
-    const handleChange1 = (event) => {
-        setChecked([event.target.checked, event.target.checked]);
-    };
-
-    const handleChange2 = (event) => {
-        setChecked([event.target.checked, checked[1]]);
-    };
-
-    const handleChange3 = (event) => {
-        setChecked([checked[0], event.target.checked]);
-    };
-
-    const children = (
-        <Box sx={{ display: 'flex', flexDirection: 'column', ml: 3 }}>
-            <FormControlLabel
-                label="Child 1"
-                control={<Checkbox checked={checked[0]} onChange={handleChange2} />}
-            />
-            <FormControlLabel
-                label="Child 2"
-                control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
-            />
-        </Box>
-    );
+import { useTheme } from "@mui/material/styles";
+const PrepList = (props) => {
+    const {ingredients} = props
+    console.log(ingredients)
     return (
-        <p>Hello</p>
-    )
+        <FormGroup>
+            {ingredients.map((item,index)=>(
+                <FormControlLabel key={index} control={<Checkbox/>} label={item}/>
+            ))}
+        </FormGroup>
+    );
 }
 export default PrepList;

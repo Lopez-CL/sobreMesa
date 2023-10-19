@@ -3,8 +3,11 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useTheme } from "@mui/material/styles";
 import { Icon, Typography, styled } from '@mui/material'
+import PrepList from "./PrepList";
 const RecipeView = () => {
     const [recipe, setRecipe] = useState({})
+    // const [ingredients, setIngredients] = useState([])
+    const theme = useTheme()
     const {_id} = useParams();
     const getMimeType = (base64Data) => { // decodes a portion of the base64 encoded string into bytes and determine the file type
         const byte = atob(base64Data.substring(0, 4)).charCodeAt(0);
@@ -45,7 +48,7 @@ const RecipeView = () => {
             <div id="ingrd-intsr">
                     <div>
                         <Typography sx={{fontSize: 'h4.fontSize'}} variant='h3'>Ingredients</Typography>
-                        {/* Ingredient Component, consider making a hide for it */}
+                        <PrepList ingredients = {recipe.ingredients || []}/>
                     </div>
                     <div>
                         
