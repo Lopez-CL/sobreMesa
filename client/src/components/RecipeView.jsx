@@ -4,6 +4,7 @@ import axios from "axios";
 import { useTheme } from "@mui/material/styles";
 import { Icon, Typography, styled } from '@mui/material'
 import PrepList from "./PrepList";
+import InstrList from "./InstList";
 const RecipeView = () => {
     const [recipe, setRecipe] = useState({})
     // const [ingredients, setIngredients] = useState([])
@@ -46,14 +47,14 @@ const RecipeView = () => {
             </div>}
             <Typography sx={{fontSize:'h6.fontSize', textAlign:'center'}}variant="body1">{recipe.description}</Typography>
             <div id="ingrd-intsr">
-                    <div>
+                    <div className="recipe-view-lists">
                         <Typography sx={{fontSize: 'h4.fontSize'}} variant='h3'>Ingredients</Typography>
                         <PrepList ingredients = {recipe.ingredients || []}/>
                     </div>
-                    <div>
+                    <div className="recipe-view-lists">
                         
                         <Typography sx={{fontSize: 'h4.fontSize'}} variant="h3">Instructions</Typography>
-                        {/* Description Component  */}
+                        <InstrList instructions = {recipe.instructions || []}></InstrList>
                     </div>
                     
             </div>
