@@ -142,5 +142,10 @@ footer {
 .recipe-view-lists{
     overflow: scroll;
 }
-
+:where(span.Mui-checked) span.MuiTypography-body1{
+    text-decoration: line-through;
+}
+.completed-list-item{
+    text-decoration: line-through;
+}
 /* 4. Media Queries */
