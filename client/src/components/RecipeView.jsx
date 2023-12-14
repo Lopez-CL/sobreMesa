@@ -10,6 +10,8 @@ const RecipeView = () => {
     // const [ingredients, setIngredients] = useState([])
     const theme = useTheme()
     const {_id} = useParams();
+    const [instHeading, setInstHeading] = useState(false);
+    const [prepHeading, setPrepHeading] = useState(false);
     const getMimeType = (base64Data) => { // decodes a portion of the base64 encoded string into bytes and determine the file type
         const byte = atob(base64Data.substring(0, 4)).charCodeAt(0);
         console.log(!base64Data)
@@ -33,6 +35,10 @@ const RecipeView = () => {
                 console.log('Error caught on the front-end')
             })
     },[])
+    // Great example of how to check the value of passing state
+    // useEffect(() => {
+    //     console.log("instHeading changed:", instHeading);
+    // }, [instHeading]);
     return (
         <>
         <div className={ recipe.imageOfDish && `recipe-view-card`}>
@@ -48,13 +54,13 @@ const RecipeView = () => {
             <Typography sx={{fontSize:'h6.fontSize', textAlign:'center'}}variant="body1">{recipe.description}</Typography>
             <div id="ingrd-intsr">
                     <div className="recipe-view-lists">
-                        <Typography sx={{fontSize: 'h4.fontSize'}} variant='h3'>Ingredients</Typography>
-                        <PrepList ingredients = {recipe.ingredients || []}/>
+                        <Typography className= {prepHeading?'completed-list':''} sx={{fontSize: 'h4.fontSize'}} variant='h3'>Ingredients</Typography>
+                        <PrepList ingredients = {recipe.ingredients || []} prepHeading = {prepHeading} setPrepHeading= {setPrepHeading}/>
                     </div>
                     <div className="recipe-view-lists">
                         
-                        <Typography sx={{fontSize: 'h4.fontSize'}} variant="h3">Instructions</Typography>
-                        <InstrList instructions = {recipe.instructions || []}></InstrList>
+                        <Typography className = {instHeading? 'completed-list':''} sx={{fontSize: 'h4.fontSize'}} variant="h3">Instructions</Typography>
+                        <InstrList instructions = {recipe.instructions || []} instHeading = {instHeading} setInstHeading = {setInstHeading}></InstrList>
                     </div>
                     
             </div>
