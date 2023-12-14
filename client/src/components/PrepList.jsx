@@ -5,21 +5,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { useTheme } from "@mui/material/styles";
 const PrepList = (props) => {
     const [prepListNums, setPrepListNums] = useState([]);
-    const {ingredients} = props
+    const {ingredients, prepHeading, setPrepHeading} = props
     const handleItemNum = (itemNum) =>{
         setPrepListNums(currentPrepListNums =>{
-            if(!currentPrepListNums.includes(itemNum)){
-                return [...currentPrepListNums, itemNum]
-            }else{
-                return currentPrepListNums.filter(num =>num !== itemNum)
-            }
+            const updatedPrepList = !currentPrepListNums.includes(itemNum)?[...currentPrepListNums, itemNum]:currentPrepListNums.filter(num =>num !== itemNum)
+            setPrepHeading(updatedPrepList.length === ingredients.length);
+            return updatedPrepList;
     })
-    /*
-    write a form that checks a list for the key numbers.
-    if the list doesn't have a list add it, if it does, then remove it
-    should be an onclick event
-    }*/
-    console.log(ingredients)
     }   
     return (
         <FormGroup>

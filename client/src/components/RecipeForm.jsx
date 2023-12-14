@@ -256,7 +256,7 @@ const RecipeForm = () => {
                     onChange={handleImageChange}
                     />
                     <label className="photo" htmlFor="button-file">
-                        <Button role="button" sx={[{backgroundColor: theme.palette.primary.main, color:'white', width:'100%'}]} variant="contained" component='span'> {<CameraAltTwoToneIcon sx={{pr:1, fontSize: '2.5rem'}} />}{<Typography sx={{fontSize: '1.2rem'}}variant="button">Upload Image *</Typography>}</Button>
+                        <Button sx={[{backgroundColor: theme.palette.primary.main, color:'white', width:'100%'}]} variant="contained" component='span'> {<CameraAltTwoToneIcon sx={{pr:1, fontSize: '2.5rem'}} />}{<Typography sx={{fontSize: '1.2rem'}}variant="button">Upload Image *</Typography>}</Button>
                         {
                     imageOfDish?<Typography className="limit-text" sx={{textAlign:'center', mt:1.5}} variant="body1">
                     {`Added: ${imageName}`}

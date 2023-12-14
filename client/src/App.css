@@ -113,7 +113,7 @@ footer {
 .recipe-view-card{
     padding: 2rem;
     border: black solid .5px;
-    width:fit-content;
+    width: 50%;
     margin: 0 auto;
     border-radius: 1rem;
 }
@@ -142,10 +142,12 @@ footer {
 .recipe-view-lists{
     overflow: scroll;
 }
-:where(span.Mui-checked) span.MuiTypography-body1{
-    text-decoration: line-through;
+
+.MuiFormControlLabel-label{
+    font-size: 1.3rem !important;
 }
-.completed-list-item{
-    text-decoration: line-through;
+
+.completed-list-item, .completed-list{
+    text-decoration: line-through !important;
 }
 /* 4. Media Queries */
