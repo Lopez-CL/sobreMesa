@@ -1,6 +1,6 @@
 import './App.css';
 import {createTheme, ThemeProvider} from '@mui/material/styles'
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Dashboard from './components/Dashboard';
@@ -32,7 +32,8 @@ function App() {
       <NavBar></NavBar>
         <Routes>
           {/* '/' will eventually be login page */}
-          <Route exact path='/recipeandbooks' element={<Dashboard/>}/>
+          <Route exact path='/' element={<Navigate replace to='/recipeandBooks'/>}/>
+          <Route exact path='/recipeandBooks' element={<Dashboard/>}/>
           <Route exact path='/view/recipe/:_id' element={<RecipeView/>}/>
           <Route exact path='/addrecipe' element={<RecipeForm/>}/>
           <Route exact path='/familycookbooks' element={<FamilyCookBooks/>}/>
