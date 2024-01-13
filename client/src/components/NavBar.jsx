@@ -1,4 +1,4 @@
-import {React, useState} from "react";
+import {React, useEffect, useState} from "react";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate, useLocation } from "react-router-dom";
 import MenuButton from "./MenuButton";
@@ -11,6 +11,30 @@ const NavBar = () => {
     const location = useLocation();
     const [value, setValue] = useState('recipeandbooks');
     const currentValue = location.pathname.substring(1)
+    useEffect(()=>{
+        let title = "";
+        if(location.pathname.startsWith('/view/recipe/')){
+            title = "Recipe View"
+        }else{
+        switch (location.pathname) {
+            case('/recipeandBooks'):
+            title = 'Recipe and Books';
+            break;
+            case('/addrecipe'):
+            title = 'Add your Recipe';
+            break;
+            case('/familycookbooks'):
+            title = 'Family Cookbooks';
+            break;
+            case('/randomrecipe'):
+            title = 'Random Recipe';
+            break;
+            default:
+                title = "Sobre Mesa"
+        }
+        }
+        document.title = title;
+    },[location.pathname])
     const handleChange = ( event, newValue) => {
         console.log(newValue)
         setValue(newValue)

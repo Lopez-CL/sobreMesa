@@ -1,6 +1,4 @@
 import { React, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from 'axios';
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -35,19 +33,19 @@ const MenuProps = {
         horizontal: 'left',
     },
 };
-const RecipeForm = () => {
+const RecipeForm = (props) => {
+    const {recipeSubmissionHandler, dataToShare} = props;
     // All setters for form data
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
-    const [cuisineType, setCuisineType] = useState([])
-    const [foodOccasion, setFoodOccasion] = useState('')
-    const [hours, setHours] = useState(0)
-    const [minutes, setMinutes] = useState(0)
-    const [ingredients, setIngredients] = useState([])
-    const [instructions, setInstructions] = useState([])
+    const [name, setName] = useState(dataToShare?dataToShare.name:'')
+    const [description, setDescription] = useState(dataToShare?dataToShare.description:'')
+    const [cuisineType, setCuisineType] = useState(dataToShare?[...dataToShare.cuisineType]:[])
+    const [foodOccasion, setFoodOccasion] = useState(dataToShare?dataToShare.foodOccasion:'')
+    const [hours, setHours] = useState(dataToShare?dataToShare.hours:0)
+    const [minutes, setMinutes] = useState(dataToShare?dataToShare.minutes:0)
+    const [ingredients, setIngredients] = useState(dataToShare?[...dataToShare.ingredients]:[])
+    const [instructions, setInstructions] = useState(dataToShare?[...dataToShare.instructions]:[])
     const [imageOfDish, setImageOfDish] = useState(null)
     const [imageName, setImageName] = useState(null)
-    const navigate = useNavigate()
     // Imports app color theme
     const theme = useTheme();
     // Controls font styles of items selected for multiselect element
@@ -86,19 +84,7 @@ const RecipeForm = () => {
         formData.append('ingredients', JSON.stringify(ingredients));
         formData.append('instructions', JSON.stringify(instructions));
         formData.append('imageOfDish', imageOfDish);
-        axios.post('http://localhost:8000/api/createRecipe',
-            formData, {headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-        .then(res => {
-            console.log(res.data)
-            console.log('success! on the front end')
-            navigate('/recipeandbooks')
-        }).catch(err =>{
-            console.log(err.response.data)
-        })
-
+        recipeSubmissionHandler(formData)
     }
     return (
         <>
@@ -112,7 +98,8 @@ const RecipeForm = () => {
                         multiline
                         id="outline-required"
                         label="Name of Dish"
-                        defaultValue="What's the dish called?"
+                        placeholder="What's the dish called?"
+                        defaultValue= {dataToShare? name:''} 
                     onChange={e => setName(e.target.value) }
                     />
                 </div>
@@ -128,6 +115,7 @@ const RecipeForm = () => {
                         // helperText='Separate instructions by commas'
                         minRows={2}
                         maxRows={3}
+                        defaultValue={dataToShare? description:''}
                         onChange={e => setDescription(e.target.value)}
                     />
                 </div>
@@ -139,7 +127,7 @@ const RecipeForm = () => {
                             labelId="occasion-select-level"
                             id="occasion-select-level"
                             label="Meal occasion to eat dish"
-                            defaultValue=''
+                            value={foodOccasion}
                             MenuProps={{
                                 anchorOrigin: {
                                     vertical: 'top',
@@ -201,6 +189,7 @@ const RecipeForm = () => {
                         id='outlined-number'
                         label='Hours'
                         type="number"
+                        defaultValue={dataToShare? dataToShare.hours:hours}
                         inputProps={{min: '0'}}
                         onChange={e => setHours(e.target.value)}
                     />
@@ -209,6 +198,7 @@ const RecipeForm = () => {
                         className="time-input"
                         required
                         id='outlined-number'
+                        defaultValue={dataToShare? dataToShare.minutes:minutes}
                         label='Minutes'
                         type="number"
                         helperText='Input minutes'
@@ -227,6 +217,7 @@ const RecipeForm = () => {
                         placeholder="What goes into it? Separate instructions by commas"
                         helperText='Separate ingredients by commas'
                         maxRows={6}
+                        defaultValue={dataToShare?ingredients.join():ingredients}
                         onChange={e => setIngredients(e.target.value.split(','))}
                     />
                 </div>
@@ -241,6 +232,7 @@ const RecipeForm = () => {
                         placeholder="How do you make it? Separate instructions by commas"
                         helperText='Separate instructions by commas'
                         maxRows={6}
+                        defaultValue={dataToShare?instructions.join():instructions}
                         onChange={e => setInstructions(e.target.value.split(','))}
                     />
                 </div>
