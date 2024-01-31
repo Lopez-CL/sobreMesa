@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import RecipeForm from '../components/RecipeForm'
 const RecipeMain = () => {
-    const dataToShare = false
+    const dataToShare = false;
     const navigate = useNavigate();
     const createRecipe = formData =>{axios.post('http://localhost:8000/api/createRecipe',
             formData, {headers: {

@@ -97,8 +97,9 @@ footer {
     display: grid;
     padding: 1.5rem;
     width:100%;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 4rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 4rem;
+
 } 
 #recipe-card{
     transition: transform .5s ease-in-out;
@@ -113,7 +114,7 @@ footer {
 .recipe-view-card{
     padding: 2rem;
     border: black solid .5px;
-    width: 50%;
+    width: 80%;
     margin: 0 auto;
     border-radius: 1rem;
 }
