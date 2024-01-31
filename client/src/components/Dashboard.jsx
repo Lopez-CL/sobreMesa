@@ -10,11 +10,12 @@ import CardActions from '@mui/material/CardActions';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Collapse from '@mui/material/Collapse';
 import axios from "axios";
-import Avatar from '@mui/material/Avatar';
+// import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import { Icon, Typography, styled } from '@mui/material'
+// import FavoriteIcon from '@mui/icons-material/Favorite';
+// import ShareIcon from '@mui/icons-material/Share';
+import AddIcon from '@mui/icons-material/Add';
+import { /*Icon*/ Typography, styled } from '@mui/material'
 const Dashboard = () => {
     const theme = useTheme();
     const nav = useNavigate();
@@ -77,6 +78,10 @@ const Dashboard = () => {
                                     title={recipe.name}
                                     subheader={`Time to cook: Hours: ${recipe.hours} Minutes: ${recipe.minutes}`}
                                 />
+                                <IconButton className="update-button" sx={[{width:'3rem', color: 'white',backgroundColor: theme.palette.secondary.dark,':hover':{color: 'white', backgroundColor: theme.palette.primary.dark}}
+                                ]}>
+                                <AddIcon/>
+                                </IconButton>
                                 <CardMedia
                                     onClick={e => nav(`/view/recipe/${recipe._id}`)} 
                                     id = "recipe-card" 
