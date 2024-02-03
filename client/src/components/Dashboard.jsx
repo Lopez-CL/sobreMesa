@@ -73,18 +73,21 @@ const Dashboard = () => {
         <>
                 <div className="recipe-container">
                     {recipes.map((recipe, idx) => (
-                            <Card key = {idx} sx={idx !== expandedIndex?{height:"max-content"}:''}>
-                                <CardHeader
-                                    title={recipe.name}
-                                    subheader={`Time to cook: Hours: ${recipe.hours} Minutes: ${recipe.minutes}`}
-                                />
-                                <IconButton className="update-button" sx={[{width:'3rem', color: 'white',backgroundColor: theme.palette.secondary.dark,':hover':{color: 'white', backgroundColor: theme.palette.primary.dark}}
-                                ]}>
-                                <AddIcon/>
-                                </IconButton>
+                            <Card className="card dashboard-card " key = {idx} sx={idx !== expandedIndex?{height:"max-content"}:''}>
+                                <div className="update-button">
+                                    <IconButton  sx={[{height:'4rem', width:'4rem', color: 'white',backgroundColor: theme.palette.secondary.dark,':hover':{color: 'white', backgroundColor: theme.palette.primary.dark}}
+                                    ]}>
+                                        <AddIcon />
+                                    </IconButton>
+                                </div>
+                                    
+                                    <CardHeader
+                                        title={recipe.name}
+                                        subheader={`Time to cook: Hours: ${recipe.hours} Minutes: ${recipe.minutes}`}
+                                    />
                                 <CardMedia
                                     onClick={e => nav(`/view/recipe/${recipe._id}`)} 
-                                    id = "recipe-card" 
+                                    id = "recipe-card-img" 
                                     component='img'
                                     height='170'
                                     image={`data:${getMimeType(recipe.imageOfDish)};base64,${recipe.imageOfDish}`}
