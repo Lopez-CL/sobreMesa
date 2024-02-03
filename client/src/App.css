@@ -101,14 +101,25 @@ footer {
     grid-gap: 4rem;
 
 } 
-#recipe-card{
-    transition: transform .5s ease-in-out;
+#recipe-card-img{
+    transition: opacity .5s ease-in;
+    opacity: .8;
 }
-#recipe-card:hover{
+#recipe-card-img:hover{
     cursor: pointer;
-    transform: scale(1.1);
+    opacity: 1;
 }
 
+.card.dashboard-card{
+    position: relative;
+    overflow: visible ;
+}
+.update-button{
+    z-index: 100;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+}
 /* Recipe View */
 
 .recipe-view-card{
