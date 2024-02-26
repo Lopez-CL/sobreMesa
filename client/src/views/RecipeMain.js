@@ -25,4 +25,4 @@ const RecipeMain = () => {
     )
 }
 
-export default RecipeMain
+export default RecipeMain;

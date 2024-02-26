@@ -14,8 +14,8 @@ import axios from "axios";
 import IconButton from '@mui/material/IconButton';
 // import FavoriteIcon from '@mui/icons-material/Favorite';
 // import ShareIcon from '@mui/icons-material/Share';
-import AddIcon from '@mui/icons-material/Add';
-import { /*Icon*/ Typography, styled } from '@mui/material'
+import EditIcon from '@mui/icons-material/Edit';
+import {Typography, styled } from '@mui/material'
 const Dashboard = () => {
     const theme = useTheme();
     const nav = useNavigate();
@@ -75,9 +75,9 @@ const Dashboard = () => {
                     {recipes.map((recipe, idx) => (
                             <Card className="card dashboard-card " key = {idx} sx={idx !== expandedIndex?{height:"max-content"}:''}>
                                 <div className="update-button">
-                                    <IconButton  sx={[{height:'4rem', width:'4rem', color: 'white',backgroundColor: theme.palette.secondary.dark,':hover':{color: 'white', backgroundColor: theme.palette.primary.dark}}
-                                    ]}>
-                                        <AddIcon />
+                                    <IconButton  sx={[{height:'3.3rem', width:'3.3rem', color: 'white',backgroundColor: theme.palette.secondary.dark,':hover':{color: 'white', backgroundColor: theme.palette.primary.dark}}]}
+                                    onClick={e => nav(`/updaterecipe/${recipe._id}`)}>
+                                        <EditIcon sx={{fontSize:"2rem"}} />
                                     </IconButton>
                                 </div>
                                     
