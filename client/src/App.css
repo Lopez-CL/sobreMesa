@@ -112,7 +112,7 @@ footer {
 
 .card.dashboard-card{
     position: relative;
-    overflow: visible ;
+    overflow: visible;
 }
 .update-button{
     z-index: 100;
